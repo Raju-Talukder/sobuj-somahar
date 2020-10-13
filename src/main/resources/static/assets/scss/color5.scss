@@ -1,0 +1,8 @@
+@import 'theme/variables';
+:root {
+    --theme-deafult: #d4b196;
+}
+@import 'theme/style';
+@import 'theme/theme-dark';
+@import 'theme/menu';
+@import 'theme/responsive';
