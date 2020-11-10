@@ -30,6 +30,13 @@ public class Account {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "account",cascade = CascadeType.ALL)
     private Set<VerifyAccount> verifyAccounts;
 
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_address",joinColumns = {
+            @JoinColumn(name = "user_id",referencedColumnName = "id")
+    },inverseJoinColumns = @JoinColumn(name = "address_id",referencedColumnName = "id"))
+    private Set<Address> address;
+
     public Long getId() {
         return id;
     }
@@ -107,5 +114,21 @@ public class Account {
             roles=new HashSet<Role>();
         roles.add(role);
         return roles;
+    }
+
+
+    public Set<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(Set<Address> address) {
+        this.address = address;
+    }
+
+    public Set<Address> addAddress(Address add){
+        if (address==null)
+            address=new HashSet<Address>();
+        address.add(add);
+        return address;
     }
 }
