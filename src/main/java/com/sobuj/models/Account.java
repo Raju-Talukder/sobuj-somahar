@@ -107,4 +107,18 @@ public class Account {
     public void setAddress(Set<Address> address) {
         this.address = address;
     }
+
+    public Set<Role> addRole(Role role){
+        if (roles==null)
+            roles=new HashSet<>();
+        roles.add(role);
+        return roles;
+    }
+
+    public Set<Address> addAddress(Address add){
+        if (address==null)
+            address=new HashSet<>();
+        address.add(add);
+        return address;
+    }
 }
