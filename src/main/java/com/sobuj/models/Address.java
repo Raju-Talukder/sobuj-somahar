@@ -8,8 +8,9 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String city;
     private String address;
+    private String city;
+    private String distric;
     private String zip;
 
     @ManyToMany(mappedBy = "address")
@@ -23,14 +24,6 @@ public class Address {
         this.id = id;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -39,11 +32,35 @@ public class Address {
         this.address = address;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDistric() {
+        return distric;
+    }
+
+    public void setDistric(String distric) {
+        this.distric = distric;
+    }
+
     public String getZip() {
         return zip;
     }
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public Set<Account> getAccount() {
+        return account;
+    }
+
+    public void setAccount(Set<Account> account) {
+        this.account = account;
     }
 }

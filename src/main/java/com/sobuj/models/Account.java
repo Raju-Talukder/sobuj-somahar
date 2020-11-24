@@ -11,13 +11,12 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String photo;
+    private String phone;
     @Column(unique = true)
     private String email;
     private String password;
-    private boolean isActive;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
@@ -45,20 +44,12 @@ public class Account {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhoto() {
@@ -67,6 +58,14 @@ public class Account {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -85,14 +84,6 @@ public class Account {
         this.password = password;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
     public Set<Role> getRoles() {
         return roles;
     }
@@ -109,26 +100,11 @@ public class Account {
         this.verifyAccounts = verifyAccounts;
     }
 
-    public Set<Role> addRole(Role role){
-        if (roles==null)
-            roles=new HashSet<Role>();
-        roles.add(role);
-        return roles;
-    }
-
-
     public Set<Address> getAddress() {
         return address;
     }
 
     public void setAddress(Set<Address> address) {
         this.address = address;
-    }
-
-    public Set<Address> addAddress(Address add){
-        if (address==null)
-            address=new HashSet<Address>();
-        address.add(add);
-        return address;
     }
 }
