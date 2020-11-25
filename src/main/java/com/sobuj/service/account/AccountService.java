@@ -1,6 +1,7 @@
 package com.sobuj.service.account;
 
 import com.sobuj.dto.AccountCreateDto;
+import com.sobuj.dto.AccountUpdateDto;
 import com.sobuj.dto.VerifyAccountDto;
 import com.sobuj.models.Account;
 
@@ -8,9 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AccountService{
-    Account createMember(AccountCreateDto accountDto) throws Exception;
+    Account registration(AccountCreateDto accountDto) throws Exception;
 
-    Account createUserByAdmin(AccountCreateDto accountDto);
+    Account updateAccount(AccountUpdateDto updateDto) throws Exception;
 
     void verifyCode(VerifyAccountDto codeVerifyDto);
 

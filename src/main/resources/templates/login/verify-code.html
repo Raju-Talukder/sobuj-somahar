@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorator="/login/loginLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobuj Somahar</title>
+</head>
+<body class="layout-20">
+<div layout:fragment="content">
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>Sobuj Somahar Verify You</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+    <!--section start-->
+    <section class="login-page section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Login</h3>
+                    <div class="theme-card">
+                        <form class="theme-form" th:action="@{/verify-code}" th:object="${codeVerifyDto}" method="post">
+                            <div class="form-group">
+                                <label>6 Digit Code</label>
+                                <input type="password" th:field="*{token}" class="form-control" placeholder="xxxxxx" required="">
+                                <span th:each="error : ${#fields.errors('token')}" th:text="${error}"></span>
+                            </div>
+                            <input type="submit" class="btn btn-solid" value="Verify">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

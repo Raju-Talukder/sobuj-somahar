@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorator="/login/loginLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobuj Somahar</title>
+</head>
+<body class="layout-20">
+<div layout:fragment="content">
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>create account</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+
+
+    <!--section start-->
+    <section class="register-page section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>create account</h3>
+                    <div class="theme-card">
+                        <form class="theme-form" th:action="@{/sign-up}" th:object="${accountCreateDto}" method="post" >
+                                <div class="col-md-6">
+                                    <label>Name</label>
+                                    <input type="text" th:field="*{name}" class="form-control" placeholder="Name" required="">
+                                    <span th:each="error : ${#fields.errors('name')}" th:text="${error}"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Phone</label>
+                                    <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone" required="">
+                                    <span th:each="error : ${#fields.errors('phone')}" th:text="${error}"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email">email</label>
+                                    <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email" required="">
+                                    <span th:each="error : ${#fields.errors('email')}" th:text="${error}"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Password</label>
+                                    <input type="password" th:field="*{password}" class="form-control" placeholder="Enter your password" required="">
+                                    <span th:each="error : ${#fields.errors('password')}" th:text="${error}"></span>
+                                </div>
+                            <div class="col-md-6">
+                                <label>Re-type Password</label>
+                                <input type="password" th:field="*{repeatPassword}" class="form-control" placeholder="Re-type your password" required="">
+                                <span th:each="error : ${#fields.errors('repeatPassword')}" th:text="${error}"></span>
+                            </div>
+                            <input type="submit" class="btn btn-solid" value="create Account">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Section ends-->
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
 package com.sobuj.dto;
 
-public class UserDto {
+public class AddressDto {
 }

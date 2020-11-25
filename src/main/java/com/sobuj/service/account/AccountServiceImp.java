@@ -1,10 +1,12 @@
 package com.sobuj.service.account;
 
 import com.sobuj.dto.AccountCreateDto;
+import com.sobuj.dto.AccountUpdateDto;
 import com.sobuj.dto.VerifyAccountDto;
 import com.sobuj.mail.Mail;
 import com.sobuj.mail.MailService;
 import com.sobuj.models.Account;
+import com.sobuj.models.Address;
 import com.sobuj.models.Role;
 import com.sobuj.models.VerifyAccount;
 import com.sobuj.repository.AccountRepository;
@@ -35,13 +37,12 @@ public class AccountServiceImp implements AccountService{
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public Account createMember(AccountCreateDto accountDto) throws Exception {
+    public Account registration(AccountCreateDto accountDto) throws Exception {
         Account account = new Account();
-        account.setFirstName(accountDto.getFirstName());
-        account.setLastName(accountDto.getLastName());
+        account.setName(accountDto.getName());
+        account.setPhone(accountDto.getPhone());
         account.setEmail(accountDto.getEmail());
         account.setPassword(passwordEncoder.encode(accountDto.getPassword()));
-        account.setActive(false);
         if(roleService.findById(2l).isPresent()) {
             Role role = roleService.findById(2l).get();
             account.addRole(role);
@@ -71,7 +72,12 @@ public class AccountServiceImp implements AccountService{
     }
 
     @Override
-    public Account createUserByAdmin(AccountCreateDto accountDto) {
+    public Account updateAccount(AccountUpdateDto updateDto) throws Exception {
+        Address address = new Address();
+        address.setAddress(updateDto.getAddress());
+        address.setCity(updateDto.getCity());
+        address.setDistric(updateDto.getDistric());
+        address.setZip(updateDto.getZip());
         return null;
     }
 
@@ -80,7 +86,6 @@ public class AccountServiceImp implements AccountService{
         String token = codeVerifyDto.getToken();
         VerifyAccount verifyAccount = verifyAccountRepository.findByToken(token).get();
         Account account = verifyAccount.getAccount();
-        account.setActive(true);
         accountRepository.save(account);
     }
 

@@ -1,4 +1,4 @@
-<header>
+<header xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="mobile-fix-option"></div>
     <div class="top-header top-header-dark2">
         <div class="container">
@@ -32,58 +32,9 @@
                                     <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
                                     <!-- Sample menu definition -->
                                     <ul id="main-menu" class="sm pixelstrap sm-horizontal light-font-menu">
-                                       <li><a href="#">Home</a></li>
-                                        <li>
-                                            <a href="#">product</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">sidebar</a>
-                                                    <ul>
-                                                        <li><a href="product-page.html">left sidebar</a></li>
-                                                        <li><a href="product-page(right-sidebar).html">right
-                                                            sidebar</a></li>
-                                                        <li><a href="product-page(no-sidebar).html">no
-                                                            sidebar</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="#">thumbnail image</a>
-                                                    <ul>
-                                                        <li><a href="product-page(left-image).html">left
-                                                            image</a></li>
-                                                        <li><a href="product-page(right-image).html">right
-                                                            image</a></li>
-                                                        <li><a href="product-page(image-outside).html">image
-                                                            outside <span class="new-tag">new</span></a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="#">three column</a>
-                                                    <ul>
-                                                        <li><a href="product-page(3-col-left).html">thumbnail
-                                                            left</a></li>
-                                                        <li><a href="product-page(3-col-right).html">thumbnail
-                                                            right</a></li>
-                                                        <li><a href="product-page(3-column).html">thubnail
-                                                            bottom</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="product-page(4-image).html">4 image <span
-                                                        class="new-tag">new</span></a></li>
-                                                <li><a href="product-page(sticky).html">sticky</a></li>
-                                                <li><a href="product-page(accordian).html">accordian</a></li>
-                                                <li><a href="product-page(bundle).html">bundle<span
-                                                        class="new-tag">new</span></a></li>
-                                                <li><a href="product-page(image-swatch).html">image swatch <span
-                                                        class="new-tag">new</span></a></li>
-                                                <li><a href="product-page(vertical-tab).html">vertical tab</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">blog</a>
-                                        </li>
+                                       <li><a th:href="@{/}">Home</a></li>
+                                        <li><a href="#">products</a></li>
+                                        <li><a href="#">blog</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -91,7 +42,7 @@
                     </div>
                     <div class="absolute-logo">
                         <div class="brand-logo">
-                            <a href="#"><img alt="" src="../assets/images/icon/logo/66.png"></a>
+                            <a th:href="@{/}"><img alt="" src="../assets/images/icon/logo/66.png"></a>
                         </div>
                     </div>
                     <div class="">
@@ -100,12 +51,13 @@
                                 <div class="icon-nav">
                                     <ul>
                                         <li class="onhover-div mobile-search">
-                                            <div><img alt="" src="../assets/images/icon/layout4/search.png"
-                                                      onclick="openSearch()" class="img-fluid blur-up lazyload">
-                                                <i class="ti-search" onclick="openSearch()"></i></div>
+                                            <div>
+                                                <img alt="" src="../assets/images/icon/layout4/search.png" onclick="openSearch()" class="img-fluid blur-up lazyload">
+                                                <i class="ti-search" onclick="openSearch()"></i>
+                                            </div>
                                             <div id="search-overlay" class="search-overlay">
-                                                <div><span class="closebtn" onclick="closeSearch()"
-                                                           title="Close Overlay">×</span>
+                                                <div>
+                                                    <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
                                                     <div class="overlay-content">
                                                         <div class="container">
                                                             <div class="row">
@@ -129,35 +81,34 @@
                                             </div>
                                         </li>
                                         <li class="onhover-div mobile-cart">
-                                            <div><img alt="" src="../assets/images/icon/layout4/cart.png"
-                                                      class="img-fluid blur-up lazyload"> <i
-                                                    class="ti-shopping-cart"></i></div>
+                                            <div>
+                                                <img alt="" src="../assets/images/icon/layout4/cart.png" class="img-fluid blur-up lazyload">
+                                                <i class="ti-shopping-cart"></i>
+                                            </div>
                                             <ul class="show-div shopping-cart">
                                                 <li>
                                                     <div class="media">
-                                                        <a href="#"><img alt="" class="mr-3"
-                                                                         src="../assets/images/nursery/pro/1.jpg"></a>
-                                                        <div class="media-body"><a href="#">
-                                                            <h4>item name</h4>
-                                                        </a>
+                                                        <a href="#"><img alt="" class="mr-3" src="../assets/images/nursery/pro/1.jpg"></a>
+                                                        <div class="media-body">
+                                                            <a href="#"><h4>item name</h4></a>
                                                             <h4><span>1 x $ 299.00</span></h4>
                                                         </div>
                                                     </div>
-                                                    <div class="close-circle"><a href="#"><i class="fa fa-times"
-                                                                                             aria-hidden="true"></i></a></div>
+                                                    <div class="close-circle">
+                                                        <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                    </div>
                                                 </li>
                                                 <li>
                                                     <div class="media">
-                                                        <a href="#"><img alt="" class="mr-3"
-                                                                         src="../assets/images/nursery/pro/2.jpg"></a>
-                                                        <div class="media-body"><a href="#">
-                                                            <h4>item name</h4>
-                                                        </a>
+                                                        <a href="#"><img alt="" class="mr-3" src="../assets/images/nursery/pro/2.jpg"></a>
+                                                        <div class="media-body">
+                                                            <a href="#"><h4>item name</h4></a>
                                                             <h4><span>1 x $ 299.00</span></h4>
                                                         </div>
                                                     </div>
-                                                    <div class="close-circle"><a href="#"><i class="fa fa-times"
-                                                                                             aria-hidden="true"></i></a></div>
+                                                    <div class="close-circle">
+                                                        <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                    </div>
                                                 </li>
                                                 <li>
                                                     <div class="total">
@@ -165,11 +116,15 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="buttons"><a href="cart.html"
-                                                                            class="view-cart">view cart</a> <a href="#"
-                                                                                                               class="checkout">checkout</a></div>
+                                                    <div class="buttons">
+                                                        <a href="cart.html"class="view-cart">view cart</a>
+                                                        <a href="#"class="checkout">checkout</a>
+                                                    </div>
                                                 </li>
                                             </ul>
+                                        </li>
+                                        <li>
+
                                         </li>
                                     </ul>
                                 </div>

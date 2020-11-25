@@ -1,28 +1,20 @@
 package com.sobuj.dto;
 
 
-import com.sobuj.validators.ValidEmail;
-import com.sobuj.validators.ValidNumber;
-import com.sobuj.validators.ValidPassword;
-import com.sobuj.validators.ValidString;
+import com.sobuj.validators.*;
 
+@ValidRepeatPassword
 public class AccountCreateDto {
     private Long id;
-    @ValidString
-    private String firstName;
-    @ValidString
-    private String lastName;
+//    @ValidString
+    private String name;
+//    @ValidNumber
+    private String phone;
     @ValidEmail
     private String email;
     @ValidPassword
     private String password;
     private String repeatPassword;
-    @ValidString
-    private String city;
-    @ValidString
-    private String address;
-    @ValidNumber
-    private String zip;
 
     public Long getId() {
         return id;
@@ -30,6 +22,22 @@ public class AccountCreateDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -52,47 +60,7 @@ public class AccountCreateDto {
         return repeatPassword;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
-
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 }

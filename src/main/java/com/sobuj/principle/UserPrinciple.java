@@ -12,9 +12,7 @@ import java.util.stream.Collectors;
 
 public class UserPrinciple implements UserDetails {
     @JsonIgnore
-    private String firstName;
-    @JsonIgnore
-    private String lastName;
+    private String name;
     @JsonIgnore
     private String photo;
     @JsonIgnore
@@ -24,9 +22,8 @@ public class UserPrinciple implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
     public UserPrinciple() {
     }
-    public UserPrinciple(String firstName,String lastName, String photo,String email, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public UserPrinciple(String name, String photo,String email, String password, Collection<? extends GrantedAuthority> authorities) {
+        this.name = name;
         this.photo = photo;
         this.email = email;
         this.password = password;
@@ -36,8 +33,7 @@ public class UserPrinciple implements UserDetails {
         List<GrantedAuthority> authorities = m.getRoles().stream().map(role ->
                 new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
         return new UserPrinciple(
-                m.getFirstName(),
-                m.getLastName(),
+                m.getName(),
                 m.getPhoto(),
                 m.getEmail(),
                 m.getPassword(),
@@ -50,20 +46,12 @@ public class UserPrinciple implements UserDetails {
         return authorities;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhoto() {
