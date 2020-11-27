@@ -1,9 +1,9 @@
 package com.sobuj.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class AddToCart {
@@ -14,6 +14,13 @@ public class AddToCart {
     private String name;
     private double price;
     private int quantity;
+
+    @OneToMany(mappedBy = "addtocart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<CartItem> cartItemList;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Account account;
 
     public Long getId() {
         return id;
@@ -53,5 +60,21 @@ public class AddToCart {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
+    public void setCartItemList(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
