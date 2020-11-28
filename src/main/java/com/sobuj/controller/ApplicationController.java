@@ -31,13 +31,12 @@ public class ApplicationController {
 
     @GetMapping("/sign-up")
     public String signUp(Model model) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication.getName().equals("anonymousUser")){
-//            return "login/register";
-//        }
         model.addAttribute("accountCreateDto",new AccountCreateDto());
-        return "login/register";
-//        return "redirect:/";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getName().equals("anonymousUser")){
+            return "login/register";
+        }
+        return "redirect:/";
     }
 
     @PostMapping("sign-up")
@@ -53,7 +52,11 @@ public class ApplicationController {
     @GetMapping("/verify-code")
     public String verifyCode(Model model, VerifyAccountDto codeVerifyDto) {
         model.addAttribute("codeVerifyDto",codeVerifyDto);
-        return "login/verify-code";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getName().equals("anonymousUser")){
+            return "login/verify-code";
+        }
+        return "redirect:/";
     }
 
     @PostMapping("verify-code")

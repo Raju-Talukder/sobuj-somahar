@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="/admin/sheared/layout">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Sobuj Somahar</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add Product</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row product-adding">
+                            <div class="col-xl-7">
+                                <form enctype="multipart/form-data" th:action="@{/admin/product/add}" th:object="${productDto}" method="post" class="needs-validation add-product-form" novalidate="">
+                                    <div class="form">
+                                        <div class="form-group mb-3 row">
+                                            <label for="validationCustom02" class="col-xl-3 col-sm-4 mb-0">Price :</label>
+                                            <input type="file" class="form-control col-xl-8 col-sm-7" name="image" id="image" accept="image/png,image/jpeg,image/jpg">
+                                            <br>
+                                            <label for="validationCustom02" class="col-xl-3 col-sm-4 mb-0"></label>
+                                            <p class="col-xl-3 col-sm-4 mb-0">
+                                                <img id="thumbnail" class="img-thumbnail" alt="Image Preview">
+                                            </p>
+                                        </div>
+                                        <div class="form-group mb-3 row">
+                                            <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">Title :</label>
+                                            <input th:field="*{name}" class="form-control col-xl-8 col-sm-7" id="validationCustom01" type="text" required="">
+                                        </div>
+                                        <div class="form-group mb-3 row">
+                                            <label for="validationCustom02" class="col-xl-3 col-sm-4 mb-0">Price :</label>
+                                            <input th:field="*{price}" class="form-control col-xl-8 col-sm-7" id="validationCustom02" type="text" required="">
+                                        </div>
+                                        <div class="form-group mb-3 row">
+                                            <label for="validationCustomUsername" class="col-xl-3 col-sm-4 mb-0">Product Code :</label>
+                                            <input th:field="*{code}" class="form-control col-xl-8 col-sm-7" id="validationCustomUsername" type="text" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form">
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-sm-4">Add Description :</label>
+                                            <div class="col-xl-8 col-sm-7 pl-0 description-sm">
+                                                <textarea th:field="*{description}" id="editor1" name="editor1" cols="90" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="offset-xl-3 offset-sm-4">
+                                        <input type="submit" class="btn btn-primary" name="" id="" value="Add">
+<!--                                        <button type="submit" class="btn btn-primary">Add</button>-->
+                                        <button type="button" class="btn btn-light">Discard</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout:fragment="script">
+    <script>
+        $(document).ready(function () {
+            $('#image').change(function () {
+                showImageThumbnail(this);
+            });
+        });
+
+        function showImageThumbnail(fileInput) {
+            file = fileInput.files[0];
+            reader = new FileReader();
+            reader.onload = function (e) {
+                $('#thumbnail').attr('src',e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+</div>
+</body>
+</html>

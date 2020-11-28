@@ -4,6 +4,7 @@ public class ProductDto {
     private Long id;
     private String photo;
     private String name;
+    private String code;
     private String description;
     private double price;
 
@@ -45,5 +46,13 @@ public class ProductDto {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

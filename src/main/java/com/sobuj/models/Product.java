@@ -12,6 +12,7 @@ public class Product {
     private Long id;
     private String photo;
     private String name;
+    private String code;
     private String description;
     private double price;
 
@@ -53,5 +54,13 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
