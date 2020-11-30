@@ -15,12 +15,20 @@ public class AddToCart {
     private double price;
     private int quantity;
 
-    @OneToMany(mappedBy = "addtocart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<CartItem> cartItemList;
+    @OneToOne
+    private Product product;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Account account;
+    @OneToMany(mappedBy = "cartItem")
+    @JsonIgnore
+    private List<ProductToCartItem> productTOCartItemList;
+
+    @ManyToOne
+    @JoinColumn(name = "shopping_cart_id")
+    private ShoppingCart shoppingCart;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private OrderDetails orderDetails;
 
     public Long getId() {
         return id;
@@ -62,19 +70,35 @@ public class AddToCart {
         this.quantity = quantity;
     }
 
-    public List<CartItem> getCartItemList() {
-        return cartItemList;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setCartItemList(List<CartItem> cartItemList) {
-        this.cartItemList = cartItemList;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public Account getAccount() {
-        return account;
+    public List<ProductToCartItem> getProductTOCartItemList() {
+        return productTOCartItemList;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setProductTOCartItemList(List<ProductToCartItem> productTOCartItemList) {
+        this.productTOCartItemList = productTOCartItemList;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
+    public OrderDetails getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(OrderDetails orderDetails) {
+        this.orderDetails = orderDetails;
     }
 }

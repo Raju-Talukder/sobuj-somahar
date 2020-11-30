@@ -18,6 +18,9 @@ public class Account {
     private String email;
     private String password;
 
+    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
+    private ShoppingCart shoppingCart;
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",joinColumns = {
@@ -106,6 +109,14 @@ public class Account {
 
     public void setAddress(Set<Address> address) {
         this.address = address;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
     public Set<Role> addRole(Role role){

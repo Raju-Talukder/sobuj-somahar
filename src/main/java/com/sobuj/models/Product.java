@@ -1,9 +1,9 @@
 package com.sobuj.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -14,6 +14,10 @@ public class Product {
     private String name;
     private String description;
     private double price;
+
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    private List<ProductToCartItem> productToCartItems;
 
     public Long getId() {
         return id;
@@ -53,5 +57,13 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public List<ProductToCartItem> getProductToCartItems() {
+        return productToCartItems;
+    }
+
+    public void setProductToCartItems(List<ProductToCartItem> productToCartItems) {
+        this.productToCartItems = productToCartItems;
     }
 }

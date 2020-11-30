@@ -1,10 +1,8 @@
 package com.sobuj.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class OrderDetails {
@@ -18,6 +16,16 @@ public class OrderDetails {
     private double price;
     private int quantity;
     private String status;
+    private double totalOrder;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<AddToCart> addToCar;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private ShippingInfo shippingInfo;
+
+    @ManyToOne
+    private Account account;
 
     public Long getId() {
         return id;
@@ -81,5 +89,37 @@ public class OrderDetails {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public double getTotalOrder() {
+        return totalOrder;
+    }
+
+    public void setTotalOrder(double totalOrder) {
+        this.totalOrder = totalOrder;
+    }
+
+    public List<AddToCart> getAddToCar() {
+        return addToCar;
+    }
+
+    public void setAddToCar(List<AddToCart> addToCar) {
+        this.addToCar = addToCar;
+    }
+
+    public ShippingInfo getShippingInfo() {
+        return shippingInfo;
+    }
+
+    public void setShippingInfo(ShippingInfo shippingInfo) {
+        this.shippingInfo = shippingInfo;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

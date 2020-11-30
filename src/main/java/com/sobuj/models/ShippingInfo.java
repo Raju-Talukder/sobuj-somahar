@@ -1,9 +1,6 @@
 package com.sobuj.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,6 +14,10 @@ public class ShippingInfo {
     private String city;
     private String distric;
     private String zip;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     public Long getId() {
         return id;
@@ -72,5 +73,13 @@ public class ShippingInfo {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
