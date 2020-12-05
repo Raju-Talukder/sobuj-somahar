@@ -95,6 +95,9 @@ public class AccountServiceImp implements AccountService{
     }
 
     @Override
+    public Optional<Account> findByName(String name) { return accountRepository.findByName(name); }
+
+    @Override
     public Optional<Account> findById(Long id) {
         return accountRepository.findById(id);
     }

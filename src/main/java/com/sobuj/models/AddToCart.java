@@ -1,8 +1,10 @@
 package com.sobuj.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.type.BigDecimalType;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -12,7 +14,7 @@ public class AddToCart {
     private Long id;
     private String photo;
     private String name;
-    private double price;
+    private BigDecimal price;
     private int quantity;
 
     @OneToOne
@@ -54,11 +56,11 @@ public class AddToCart {
         this.name = name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

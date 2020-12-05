@@ -3,6 +3,7 @@ package com.sobuj.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -10,7 +11,7 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private double GrandTotal;
+    private BigDecimal GrandTotal;
 
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -27,11 +28,11 @@ public class ShoppingCart {
         this.id = id;
     }
 
-    public double getGrandTotal() {
+    public BigDecimal getGrandTotal() {
         return GrandTotal;
     }
 
-    public void setGrandTotal(double grandTotal) {
+    public void setGrandTotal(BigDecimal grandTotal) {
         GrandTotal = grandTotal;
     }
 

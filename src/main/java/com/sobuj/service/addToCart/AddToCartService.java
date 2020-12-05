@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface AddToCartService {
     List<AddToCart> findByShoppingCart(ShoppingCart shoppingCart);
+
+    AddToCart updateAddToCart(AddToCart addToCart);
 }

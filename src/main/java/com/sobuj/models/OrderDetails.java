@@ -1,6 +1,7 @@
 package com.sobuj.models;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,10 +14,10 @@ public class OrderDetails {
     private LocalDateTime shippingDate;
     private String photo;
     private String name;
-    private double price;
+    private BigDecimal price;
     private int quantity;
     private String status;
-    private double totalOrder;
+    private BigDecimal totalOrder;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<AddToCart> addToCar;
@@ -67,11 +68,11 @@ public class OrderDetails {
         this.name = name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -91,11 +92,11 @@ public class OrderDetails {
         this.status = status;
     }
 
-    public double getTotalOrder() {
+    public BigDecimal getTotalOrder() {
         return totalOrder;
     }
 
-    public void setTotalOrder(double totalOrder) {
+    public void setTotalOrder(BigDecimal totalOrder) {
         this.totalOrder = totalOrder;
     }
 

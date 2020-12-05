@@ -3,6 +3,7 @@ package com.sobuj.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -13,7 +14,8 @@ public class Product {
     private String photo;
     private String name;
     private String description;
-    private double price;
+    private BigDecimal price;
+    private int inStockNumber;
 
     @OneToMany(mappedBy = "product")
     @JsonIgnore
@@ -51,11 +53,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -65,5 +67,13 @@ public class Product {
 
     public void setProductToCartItems(List<ProductToCartItem> productToCartItems) {
         this.productToCartItems = productToCartItems;
+    }
+
+    public int getInStockNumber() {
+        return inStockNumber;
+    }
+
+    public void setInStockNumber(int inStockNumber) {
+        this.inStockNumber = inStockNumber;
     }
 }
