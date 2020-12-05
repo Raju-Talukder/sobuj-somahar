@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml"
       layout:decorator="/public/sheared/layout">
 <head>
     <meta charset="UTF-8">
@@ -15,16 +16,11 @@
                         <h2 class="title-inner4">trending products</h2>
                         <div class="line"><span></span></div>
                     </div>
-                    <div class="product-4 product-m no-arrow">
-                        <div class="product-box product-wrap">
+                    <div class="product-4 product-m no-arrow" >
+                        <div class="product-box product-wrap" th:switch="${products}" th:case="*" th:each="products : ${products}">
                             <div class="img-wrapper">
-                                <div class="lable-block"><span class="lable3">new</span> <span class="lable4">on
-                                            sale</span></div>
                                 <div class="front">
-                                    <a href="product-page(no-sidebar).html">
-                                        <img src="/assets/images/nursery/pro/8.jpg"
-                                            class="img-fluid blur-up lazyload bg-img" alt="">
-                                    </a>
+                                    <img th:src="@{'/photos/products/'+${products.photo}}" class="img-fluid blur-up lazyload bg-img" alt="">
                                 </div>
                                 <div class="cart-box">
                                     <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
@@ -36,112 +32,9 @@
                                 </div>
                             </div>
                             <div class="product-detail text-center">
-                                <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                                <h4>$500.00 <del>$600.00</del></h4>
-                            </div>
-                        </div>
-                        <div class="product-box product-wrap">
-                            <div class="img-wrapper">
-                                <div class="front">
-                                    <a href="product-page(no-sidebar).html"><img
-                                            src="/assets/images/nursery/pro/8.jpg"
-                                            class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                                </div>
-                                <div class="cart-box">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                            class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                                                                      title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a
-                                        href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                        class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                                                                         title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
-                            </div>
-                            <div class="product-detail text-center">
-                                <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                                <h4>$500.00</h4>
-                            </div>
-                        </div>
-                        <div class="product-box product-wrap">
-                            <div class="img-wrapper">
-                                <div class="lable-block"><span class="lable3">new</span> <span class="lable4">on
-                                            sale</span></div>
-                                <div class="front">
-                                    <a href="product-page(no-sidebar).html"><img
-                                            src="/assets/images/nursery/pro/8.jpg"
-                                            class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                                </div>
-                                <div class="cart-box">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                            class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                                                                      title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a
-                                        href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                        class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                                                                         title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
-                            </div>
-                            <div class="product-detail text-center">
-                                <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                                <h4>$500.00</h4>
-                            </div>
-                        </div>
-                        <div class="product-box product-wrap">
-                            <div class="img-wrapper">
-                                <div class="front">
-                                    <a href="product-page(no-sidebar).html"><img
-                                            src="/assets/images/nursery/pro/8.jpg"
-                                            class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                                </div>
-                                <div class="cart-box">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                            class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                                                                      title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a
-                                        href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                        class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                                                                         title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
-                            </div>
-                            <div class="product-detail text-center">
-                                <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                                <h4>$500.00 <del>$600.00</del></h4>
-                            </div>
-                        </div>
-                        <div class="product-box product-wrap">
-                            <div class="img-wrapper">
-                                <div class="lable-block"><span class="lable3">new</span> <span class="lable4">on
-                                            sale</span></div>
-                                <div class="front">
-                                    <a href="product-page(no-sidebar).html"><img
-                                            src="/assets/images/nursery/pro/8.jpg"
-                                            class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                                </div>
-                                <div class="cart-box">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                            class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                                                                      title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a
-                                        href="#" data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                        class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                                                                         title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
-                            </div>
-                            <div class="product-detail text-center">
-                                <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                        class="fa fa-star"></i></div><a href="product-page(no-sidebar).html">
-                                <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
-                                <h4>$500.00</h4>
+                                <h6 th:text="${products.name}"></h6>
+                                <h4 th:text="${products.code}"></h4>
+                                <h4 th:text="${products.price}"></h4>
                             </div>
                         </div>
                     </div>
