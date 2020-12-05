@@ -117,7 +117,7 @@ public class Account {
 
     public Set<Address> addAddress(Address add){
         if (address==null)
-            address=new HashSet<>();
+            address=new HashSet<Address>();
         address.add(add);
         return address;
     }

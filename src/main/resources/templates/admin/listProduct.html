@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="/admin/sheared/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobuj Somahar</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>Product List
+                                <small>Sobuj Somahar Admin panel</small>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                            <li class="breadcrumb-item active">Product List</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container-fluid Ends-->
+        <!-- Container-fluid starts-->
+        <div class="container-fluid" >
+            <div class="row products-admin ratio_asos">
+                <div class="col-xl-3 col-sm-6" th:switch="${products}" th:case="*" th:each="products : ${products}">
+                    <div class="card">
+                        <div class="card-body product-box" >
+                            <div class="img-wrapper" >
+                                <div class="front">
+                                    <a href="#">
+                                        <img th:src="@{'/photos/product/'+${products.photo}}" class="img-fluid blur-up lazyload bg-img" alt="">
+                                    </a>
+                                    <div class="product-hover">
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{/admin/product/update/{id}(id=${products.id})}" class="btn">
+                                                    <i class="ti-pencil-alt"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/admin/product/delete/{id}(id=${products.id})}" class="btn">
+                                                    <i class="ti-trash"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-detail">
+                                <a href="#">
+                                    <h6 th:text="${products.name}"></h6>
+                                </a>
+                                <h4 th:text="${products.code}"></h4>
+                                <h4 th:text="${products.price}"></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container-fluid Ends-->
+    </div>
+</div>
+</body>
+</html>

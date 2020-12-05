@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="/user/sheared/layout">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Sobuj Somahar</title>
+</head>
+<body class="layout-20">
+<div layout:fragment="content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mt-0">
+                            <div class="card-body">
+                                <div class="dashboard-box" >
+                                    <div class="dashboard-title">
+                                        <h4>profile</h4>
+                                    </div>
+                                    <div class="col-xl-7">
+                                        <form enctype="multipart/form-data" th:action="@{/user/profile/edit}" th:object="${accountUpdateDto}" method="post" class="needs-validation add-product-form" novalidate="">
+                                            <div class="form">
+                                                <div class="form-group mb-3 row">
+                                                    <label class="col-xl-3 col-sm-4 mb-0">Photo :</label>
+                                                    <input type="file" class="form-control col-xl-8 col-sm-7" name="image" id="image" accept="image/png,image/jpeg,image/jpg">
+                                                    <br>
+                                                    <label class="col-xl-3 col-sm-4 mb-0"></label>
+                                                    <p class="col-xl-3 col-sm-4 mb-0">
+                                                        <img id="thumbnail" class="img-thumbnail" alt="Image Preview">
+                                                    </p>
+                                                </div>
+                                                <div class="form-group mb-3 row">
+                                                    <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">Name :</label>
+                                                    <input th:field="*{name}" class="form-control col-xl-8 col-sm-7" id="validationCustom01" type="text" required="">
+                                                </div>
+                                                <div class="form-group mb-3 row">
+                                                    <label for="validationCustomUsername" class="col-xl-3 col-sm-4 mb-0">Phone :</label>
+                                                    <input th:field="*{phone}" class="form-control col-xl-8 col-sm-7" id="validationCustomUsername" type="text" required="">
+                                                </div>
+                                                <div class="form-group mb-3 row">
+                                                    <label for="validationCustomUsername" class="col-xl-3 col-sm-4 mb-0">Address :</label>
+                                                    <input th:field="*{address}" class="form-control col-xl-8 col-sm-7" id="validationCustomUsername" type="text" required="">
+                                                </div>
+                                                <div class="form-group mb-3 row">
+                                                    <label for="validationCustomUsername" class="col-xl-3 col-sm-4 mb-0">City :</label>
+                                                    <input th:field="*{city}" class="form-control col-xl-8 col-sm-7" id="validationCustomUsername" type="text" required="">
+                                                </div>
+                                                <div class="form-group mb-3 row">
+                                                    <label for="validationCustomUsername" class="col-xl-3 col-sm-4 mb-0">District :</label>
+                                                    <input th:field="*{distric}" class="form-control col-xl-8 col-sm-7" id="validationCustomUsername" type="text" required="">
+                                                </div>
+                                                <div class="form-group mb-3 row">
+                                                    <label for="validationCustomUsername" class="col-xl-3 col-sm-4 mb-0">Zip :</label>
+                                                    <input th:field="*{zip}" class="form-control col-xl-8 col-sm-7" id="validationCustomUsername" type="text" required="">
+                                                </div>
+                                            </div>
+                                            <div class="offset-xl-3 offset-sm-4">
+                                                <input type="submit" class="btn btn-primary" name="" id="" value="Add">
+                                                <button type="button" class="btn btn-light">Discard</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+    <!--preview the selected image for upload-->
+    <div layout:fragment="script">
+        <script>
+            $(document).ready(function () {
+                $('#image').change(function () {
+                    showImageThumbnail(this);
+                });
+            });
+
+            function showImageThumbnail(fileInput) {
+                file = fileInput.files[0];
+                reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#thumbnail').attr('src',e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        </script>
+    </div>
+</body>
+</html>

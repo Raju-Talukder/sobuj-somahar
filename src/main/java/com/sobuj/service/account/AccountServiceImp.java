@@ -10,12 +10,20 @@ import com.sobuj.models.Address;
 import com.sobuj.models.Role;
 import com.sobuj.models.VerifyAccount;
 import com.sobuj.repository.AccountRepository;
+import com.sobuj.repository.AddressRepository;
 import com.sobuj.repository.VerifyAccountRepository;
+import com.sobuj.service.address.AddressService;
+import com.sobuj.service.product.ProductServiceImp;
 import com.sobuj.service.role.RoleService;
 import com.sobuj.utils.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -27,6 +35,8 @@ import java.util.Optional;
 public class AccountServiceImp implements AccountService{
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private AddressRepository addressRepository;
     @Autowired
     private VerifyAccountRepository verifyAccountRepository;
     @Autowired
@@ -43,6 +53,9 @@ public class AccountServiceImp implements AccountService{
         account.setPhone(accountDto.getPhone());
         account.setEmail(accountDto.getEmail());
         account.setPassword(passwordEncoder.encode(accountDto.getPassword()));
+        Address address = new Address();
+        addressRepository.save(address);
+        account.addAddress(address);
         if(roleService.findById(2l).isPresent()) {
             Role role = roleService.findById(2l).get();
             account.addRole(role);
@@ -72,21 +85,50 @@ public class AccountServiceImp implements AccountService{
     }
 
     @Override
-    public Account updateAccount(AccountUpdateDto updateDto) throws Exception {
-        Address address = new Address();
+    public Account updateAccount(MultipartFile image, AccountUpdateDto updateDto) throws Exception {
+        String fileName = StringUtils.cleanPath(image.getOriginalFilename());
+        String uploadDir = "./photos/Profile";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account account = accountRepository.findByEmail(authentication.getName()).get();
+        ProductServiceImp.photoDuplicate(image, fileName, uploadDir);
+        Address address = addressRepository.findById(account.getId()).get();
         address.setAddress(updateDto.getAddress());
         address.setCity(updateDto.getCity());
         address.setDistric(updateDto.getDistric());
         address.setZip(updateDto.getZip());
-        return null;
+        addressRepository.save(address);
+        account.setPhoto(fileName);
+        account.setName(updateDto.getName());
+        account.setPhone(updateDto.getPhone());
+        account.addAddress(address);
+        return accountRepository.save(account);
     }
 
     @Override
-    public void verifyCode(VerifyAccountDto codeVerifyDto) {
-        String token = codeVerifyDto.getToken();
-        VerifyAccount verifyAccount = verifyAccountRepository.findByToken(token).get();
-        Account account = verifyAccount.getAccount();
-        accountRepository.save(account);
+    public void getProfileInfo(Model model, AccountService accountService, AddressService addressService) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account account = accountService.findByEmail(authentication.getName())
+                .orElseThrow(()->new IllegalArgumentException("Not found"));
+        Address address = addressService.findById(account.getId())
+                .orElseThrow(()->new IllegalArgumentException("Not found"));
+        model.addAttribute("profile",account);
+        model.addAttribute("address",address);
+    }
+
+    @Override
+    public void showUserUpdateProfileFormData(Model model,AccountUpdateDto accountUpdateDto, AccountService accountService, AddressService addressService){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account account = accountService.findByEmail(authentication.getName()).get();
+        Address address = addressService.findById(account.getId()).get();
+        accountUpdateDto.setId(account.getId());
+        accountUpdateDto.setName(account.getName());
+        accountUpdateDto.setPhoto(account.getPhoto());
+        accountUpdateDto.setPhone(account.getPhone());
+        accountUpdateDto.setCity(address.getCity());
+        accountUpdateDto.setDistric(address.getDistric());
+        accountUpdateDto.setAddress(address.getAddress());
+        accountUpdateDto.setZip(address.getZip());
+        model.addAttribute("accountUpdateDto",accountUpdateDto);
     }
 
     @Override
@@ -105,8 +147,18 @@ public class AccountServiceImp implements AccountService{
     }
 
     @Override
+    public void verifyCode(VerifyAccountDto codeVerifyDto) {
+        String token = codeVerifyDto.getToken();
+        VerifyAccount verifyAccount = verifyAccountRepository.findByToken(token).get();
+        Account account = verifyAccount.getAccount();
+        accountRepository.save(account);
+    }
+
+    @Override
     public void delete(Long id) {
         Account account = accountRepository.findById(id).get();
         accountRepository.delete(account);
+        Address address = addressRepository.findById(id).get();
+        addressRepository.delete(address);
     }
 }

@@ -1,4 +1,4 @@
-<div class="page-main-header">
+<div class="page-main-header" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="main-header-right row">
         <div class="main-header-left d-lg-none">
             <div class="logo-wrapper">
@@ -52,15 +52,17 @@
                     </ul>
                 </li>
                 <li class="onhover-dropdown">
-                    <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="../assets/images/dashboard/man.png" alt="header-user">
-                        <div class="dotted-animation"><span class="animate-circle"></span><span class="main-circle"></span></div>
+                    <div class="media align-items-center">
+                        <img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" th:src="@{'/photos/Profile/'+${#request.userPrincipal.principal.photo}}" alt="header-user">
+                        <div class="dotted-animation">
+                            <span class="animate-circle"></span>
+                            <span class="main-circle"></span>
+                        </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
-                        <li><a href="#"><i data-feather="user"></i>Edit Profile</a></li>
-                        <li><a href="#"><i data-feather="mail"></i>Inbox</a></li>
-                        <li><a href="#"><i data-feather="lock"></i>Lock Screen</a></li>
-                        <li><a href="#"><i data-feather="settings"></i>Settings</a></li>
-                        <li><a href="#"><i data-feather="log-out"></i>Logout</a></li>
+                        <li><a th:href="@{/admin/profile/edit}"><i data-feather="user"></i>Edit Profile</a></li>
+                        <li><a th:href="@{/admin/profile}"><i data-feather="settings"></i>Settings</a></li>
+                        <li><a th:href="@{/logout}"><i data-feather="log-out"></i>Logout</a></li>
                     </ul>
                 </li>
             </ul>

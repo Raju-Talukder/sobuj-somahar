@@ -1,0 +1,28 @@
+<div class="col-lg-3" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="dashboard-sidebar">
+        <div class="profile-top">
+            <div class="profile-image">
+                <img th:src="@{'/photos/Profile/'+${#request.userPrincipal.principal.photo}}" alt="" class="img-fluid">
+            </div>
+            <div class="profile-detail">
+                <h5 th:text="${#request.userPrincipal.principal.name}"></h5>
+            </div>
+        </div>
+        <div class="faq-tab">
+            <ul class="nav nav-tabs" id="top-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/}">dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/orders}">orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/profile}">profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#logout" href="#logout">logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

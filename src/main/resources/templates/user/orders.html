@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="/user/sheared/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobuj Somahar</title>
+</head>
+<body class="layout-20">
+<div layout:fragment="content">
+    <div class="col-lg-9">
+        <div class="faq-content tab-content" id="top-tabContent">
+            <div class="tab-pane fade show active" id="dashboard">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card dashboard-table">
+                            <div class="card-body">
+                                <h3>trending products</h3>
+                                <table class="table mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">image</th>
+                                        <th scope="col">product name</th>
+                                        <th scope="col">price</th>
+                                        <th scope="col">sales</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row"><img
+                                                src="/assets/images/dashboard/product/1.jpg"
+                                                class="blur-up lazyloaded"></th>
+                                        <td>neck velvet dress</td>
+                                        <td>$205</td>
+                                        <td>1000</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><img
+                                                src="/assets/images/dashboard/product/9.jpg"
+                                                class="blur-up lazyloaded"></th>
+                                        <td>belted trench coat</td>
+                                        <td>$350</td>
+                                        <td>800</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><img src="/assets/images/pro3/34.jpg"
+                                                             class="blur-up lazyloaded"></th>
+                                        <td>man print tee</td>
+                                        <td>$150</td>
+                                        <td>750</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="orders">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card dashboard-table mt-0">
+                            <div class="card-body">
+                                <div class="top-sec">
+                                    <h3>orders</h3>
+                                    <a href="#" class="btn btn-sm btn-solid">add product</a>
+                                </div>
+                                <table class="table table-responsive-sm mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">order id</th>
+                                        <th scope="col">product details</th>
+                                        <th scope="col">status</th>
+                                        <th scope="col">price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">#125021</th>
+                                        <td>neck velvet dress</td>
+                                        <td>shipped</td>
+                                        <td>$205</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#521214</th>
+                                        <td>belted trench coat</td>
+                                        <td>shipped</td>
+                                        <td>$350</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#521021</th>
+                                        <td>men print tee</td>
+                                        <td>pending</td>
+                                        <td>$150</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#245021</th>
+                                        <td>woman print tee</td>
+                                        <td>shipped</td>
+                                        <td>$150</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#122141</th>
+                                        <td>men print tee</td>
+                                        <td>canceled</td>
+                                        <td>$150</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#125015</th>
+                                        <td>men print tee</td>
+                                        <td>pending</td>
+                                        <td>$150</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#245021</th>
+                                        <td>woman print tee</td>
+                                        <td>shipped</td>
+                                        <td>$150</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#122141</th>
+                                        <td>men print tee</td>
+                                        <td>canceled</td>
+                                        <td>$150</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#125015</th>
+                                        <td>men print tee</td>
+                                        <td>pending</td>
+                                        <td>$150</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mt-0">
+                            <div class="card-body">
+                                <div class="dashboard-box" >
+                                    <div class="dashboard-title">
+                                        <h4>profile</h4>
+                                        <span data-toggle="modal" data-target="#edit-profile">
+                                             <a th:href="@{/user/profile/edit}">Edit</a>
+                                        </span>
+                                    </div>
+                                    <div class="dashboard-detail" >
+                                        <ul>
+                                            <li>
+                                                <div class="details">
+                                                    <div class="left">
+                                                        <h6>email address</h6>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h6></h6>
+                                                        <!--                                                                    th:text="${profile.email}"-->
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="details">
+                                                    <div class="left">
+                                                        <h6>Country / Region</h6>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h6>Downers Grove, IL</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="details">
+                                                    <div class="left">
+                                                        <h6>street address</h6>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h6 >549 Sulphur Springs Road</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="details">
+                                                    <div class="left">
+                                                        <h6>city/state</h6>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h6>Downers Grove, IL</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="details">
+                                                    <div class="left">
+                                                        <h6>zip</h6>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h6>60515</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

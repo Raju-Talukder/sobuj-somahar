@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+      layout:decorator="/user/sheared/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobuj Somahar</title>
+</head>
+<body class="layout-20">
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-0">
+                <div class="card-body" th:object="${profile}">
+                    <div class="dashboard-box" th:object="${address}">
+                        <div class="dashboard-title">
+                            <h4>profile</h4>
+                            <a th:href="@{/user/profile/edit}" class="btn btn-primary">Edit</a>
+                        </div>
+                        <div class="dashboard-detail">
+                            <ul>
+                                <li>
+                                    <div class="details">
+                                        <div class="left">
+                                            <h6>Name</h6>
+                                        </div>
+                                        <div class="right">
+                                            <h6 th:text="${profile.name}"></h6>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="details">
+                                        <div class="left">
+                                            <h6>Email</h6>
+                                        </div>
+                                        <div class="right">
+                                            <h6 th:text="${profile.email}"></h6>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="details">
+                                        <div class="left">
+                                            <h6>Phone</h6>
+                                        </div>
+                                        <div class="right">
+                                            <h6 th:text="${profile.phone}"></h6>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="details">
+                                        <div class="left">
+                                            <h6>Address</h6>
+                                        </div>
+                                        <div class="right">
+                                            <h6 th:text="${address.address}"></h6>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="details">
+                                        <div class="left">
+                                            <h6>City</h6>
+                                        </div>
+                                        <div class="right">
+                                            <h6 th:text="${address.city}"></h6>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="details">
+                                        <div class="left">
+                                            <h6>District</h6>
+                                        </div>
+                                        <div class="right">
+                                            <h6 th:text="${address.distric}"></h6>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="details">
+                                        <div class="left">
+                                            <h6>Zip</h6>
+                                        </div>
+                                        <div class="right">
+                                            <h6 th:text="${address.zip}"></h6>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
