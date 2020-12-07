@@ -1,8 +1,8 @@
 package com.sobuj.service.addToCart;
 
-import com.sobuj.models.AddToCart;
-import com.sobuj.models.ShoppingCart;
+import com.sobuj.models.*;
 import com.sobuj.repository.AddToCartRepository;
+import com.sobuj.repository.ProductToCartItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,10 @@ public class AddToCartServiceImp implements AddToCartService{
     @Autowired
     private AddToCartRepository addToCartRepository;
 
+    @Autowired
+    private ProductToCartItemRepository productToCartItemRepository;
+
+
     public List<AddToCart> findByShoppingCart(ShoppingCart shoppingCart){
         return addToCartRepository.findByShoppingCart(shoppingCart);
     }
@@ -26,4 +30,31 @@ public class AddToCartServiceImp implements AddToCartService{
 
         return addToCart;
     }
+
+    public AddToCart addProductToAddToCart(Product product, Account account, int quantity){
+        List<AddToCart> addToCartItem = findByShoppingCart(account.getShoppingCart());
+
+        for (AddToCart addToCart : addToCartItem){
+            if (product.getId() == addToCart.getProduct().getId()){
+                addToCart.setQuantity(addToCart.getQuantity()+quantity);
+                addToCart.setPrice(new BigDecimal(String.valueOf(product.getPrice())).multiply(new BigDecimal(quantity)));
+                addToCartRepository.save(addToCart);
+                return addToCart;
+            }
+        }
+        AddToCart addToCart = new AddToCart();
+        addToCart.setShoppingCart(account.getShoppingCart());
+        addToCart.setProduct(product);
+        addToCart.setQuantity(quantity);
+        addToCart.setPrice(new BigDecimal(String.valueOf(product.getPrice())).multiply(new BigDecimal(quantity)));
+        addToCart = addToCartRepository.save(addToCart);
+
+        ProductToCartItem productToCartItem = new ProductToCartItem();
+        productToCartItem.setProduct(product);
+        productToCartItem.setAddToCart(addToCart);
+        productToCartItemRepository.save(productToCartItem);
+
+        return addToCart;
+    }
+
 }

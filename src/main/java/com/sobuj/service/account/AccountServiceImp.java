@@ -5,10 +5,7 @@ import com.sobuj.dto.AccountUpdateDto;
 import com.sobuj.dto.VerifyAccountDto;
 import com.sobuj.mail.Mail;
 import com.sobuj.mail.MailService;
-import com.sobuj.models.Account;
-import com.sobuj.models.Address;
-import com.sobuj.models.Role;
-import com.sobuj.models.VerifyAccount;
+import com.sobuj.models.*;
 import com.sobuj.repository.AccountRepository;
 import com.sobuj.repository.VerifyAccountRepository;
 import com.sobuj.service.role.RoleService;
@@ -94,8 +91,6 @@ public class AccountServiceImp implements AccountService{
         return accountRepository.findByEmail(email);
     }
 
-    @Override
-    public Optional<Account> findByName(String name) { return accountRepository.findByName(name); }
 
     @Override
     public Optional<Account> findById(Long id) {
@@ -105,6 +100,11 @@ public class AccountServiceImp implements AccountService{
     @Override
     public List<Account> findAll() {
         return accountRepository.findAll();
+    }
+
+    @Override
+    public Account findByName(String name){
+        return accountRepository.findByName(name);
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.sobuj.dto.AccountCreateDto;
 import com.sobuj.dto.AccountUpdateDto;
 import com.sobuj.dto.VerifyAccountDto;
 import com.sobuj.models.Account;
+import com.sobuj.models.Product;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,7 @@ public interface AccountService{
 
     Optional<Account> findByEmail(String email);
 
-    Optional<Account> findByName(String name);
+    Account findByName(String name);
 
     Optional<Account> findById(Long id);
 

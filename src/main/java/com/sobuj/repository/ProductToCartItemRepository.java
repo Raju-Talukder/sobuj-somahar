@@ -1,9 +1,10 @@
 package com.sobuj.repository;
 
-import com.sobuj.models.ShoppingCart;
+import com.sobuj.models.ProductToCartItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
+public interface ProductToCartItemRepository extends JpaRepository<ProductToCartItem, Long> {
+
 }
